@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Return Request Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <form class="return-form" id="returnForm" method="POST"
+        action="https://middlewares-a7edfgatcgaeh2ft.uaenorth-01.azurewebsites.net/api/ReturnRequest" novalidate>
+
+        <!-- Contact Information -->
+        <div class="section">
+            <h3 class="section-title">Kontaktdaten</h3>
+            <div class="row">
+                <div class="field">
+                    <label for="firstName">Vorname<span class="req">*</span></label>
+                    <input type="text" id="firstName" name="FirstName" required>
+                </div>
+                <div class="field">
+                    <label for="lastName">Nachname<span class="req">*</span></label>
+                    <input type="text" id="lastName" name="LastName" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="field">
+                    <label for="phone">Telefonnummer</label>
+                    <input type="tel" id="phone" name="PhoneNumber">
+                </div>
+                <div class="field">
+                    <label for="email">E-Mail-Adresse<span class="req">*</span></label>
+                    <input type="email" id="email" name="Email" required>
+                </div>
+            </div>
+        </div>
+
+        <!-- Order Information -->
+        <div class="section">
+            <h3 class="section-title">Bestellinformationen</h3>
+            <div class="row half">
+                <div class="field">
+                    <label for="orderNumber">Bestellnummer<span class="req">*</span></label>
+                    <input type="text" id="orderNumber" name="OrderNumber" required>
+                </div>
+                <div class="spacer"></div>
+            </div>
+        </div>
+
+        <!-- Products -->
+        <div class="section" style="margin-bottom:0">
+            <h3 class="section-title">Artikel zur Rücksendung</h3>
+
+            <div id="productList">
+                <div class="product-card" data-index="1">
+                    <div class="product-head">
+                        <div class="product-title"><span class="product-badge" aria-hidden="true"></span><span
+                                class="product-label">Artikel 1</span></div>
+                        <button type="button" class="remove-btn" aria-label="Remove product" title="Remove">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 6h18" />
+                                <path d="M8 6V4h8v2" />
+                                <path d="M19 6l-1 14H6L5 6" />
+                                <path d="M10 11v6" />
+                                <path d="M14 11v6" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="row product-row">
+                        <div class="field">
+                            <label>Produktname<span class="req">*</span></label>
+                            <input type="text" name="ProductName_1" placeholder="" required>
+                        </div>
+                        <div class="field">
+                            <label>Menge</label>
+                            <input type="number" name="Quantity_1" value="1" min="1">
+                        </div>
+                    </div>
+                    <div class="row full">
+                        <div class="field">
+                            <label>Grund der Rücksendung<span class="req">*</span></label>
+                            <div class="select-wrap">
+                                <select name="Reason_1" required>
+                                    <option value="" disabled selected>Bitte wähle einen Grund aus.</option>
+                                    <option>Wird nicht mehr benötigt</option>
+                                    <option>Verspätete Lieferung</option>
+                                    <option>Passt nicht oder Falsche Passform</option>
+                                    <option>Beschädigt oder Defekt</option>
+                                    <option>Sonstiges bitte angeben</option>
+                                    <option>Rückgabe und Entsorgung von Vapes und E-Zigaretten</option>
+                                </select>
+                    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row full">
+                        <div class="field">
+                            <label>Beschreibung</label>
+                            <textarea name="Description_1"
+                                placeholder="Hier kannst Du uns weitere Informationen zu Deiner Rücksendung mitteilen."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="add-item" id="addItem"><span class="plus" aria-hidden="true">+</span>Weiteren Artikel
+                hinzufügen</button>
+        </div>
+
+        <!-- Hidden Fields section (not visible to the customer) - set the values here -->
+        <div class="section hidden-section" aria-hidden="true" style="display:none">
+            <h3 class="section-title">Hidden Fields</h3>
+            <div class="row full">
+                <div class="field">
+                    <label for="layout">Layout</label>
+                    <input type="text" id="layout" name="Layout" value="SHISHA WORLD" readonly tabindex="-1">
+                </div>
+            </div>
+            <div class="row full">
+                <div class="field">
+                    <label for="source">Source</label>
+                    <input type="text" id="source" name="Source" value="Shisha World Return Request Form" readonly
+                        tabindex="-1">
+                </div>
+            </div>
+            <div class="row full">
+                <div class="field">
+                    <label for="leadFormLanguage">Lead Form Language</label>
+                    <input type="text" id="leadFormLanguage" name="LeadFormLanguage" value="German" readonly
+                        tabindex="-1">
+                </div>
+            </div>
+            <div class="row full">
+                <div class="field">
+                    <label for="status">Status</label>
+                    <input type="text" id="status" name="Status" value="Open" readonly tabindex="-1">
+                </div>
+            </div>
+            <div class="row full">
+                <div class="field">
+                    <label for="pipeline">Pipeline</label>
+                    <input type="text" id="pipeline" name="Pipeline" value="Shisha World B2C" readonly tabindex="-1">
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submitBtn">Rücksendung anfragen</button>
+        <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+    </form>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

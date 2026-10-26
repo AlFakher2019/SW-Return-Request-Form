@@ -1,0 +1,425 @@
+:root {
+    --text: #1d1d1f;
+    --label: #2b2b2b;
+    --muted: #4a4a4a;
+    --placeholder: #7a7a7a;
+    --border: #c9c9c9;
+    --border-light: #d9d9d9;
+    --panel-bg: #f5f5f5;
+    --required: #e0301e;
+    --accent: #d33a0c;
+    --accent-hover: #b83008;
+    --radius: 4px;
+    --font: "Outfit", "Helvetica Neue", Arial, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #ffffff;
+    font-family: var(--font);
+    color: var(--text);
+}
+
+.return-form {
+    max-width: 1060px;
+    margin: 0 auto;
+    padding: 32px 16px 56px;
+}
+
+/* Section headings */
+.section-title {
+    font-family: var(--font);
+    font-weight: 500;
+    font-size: 21px;
+    margin: 0 0 18px;
+}
+
+.section {
+    margin-bottom: 40px;
+}
+
+/* Grid */
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px 28px;
+    margin-bottom: 22px;
+}
+
+.row:last-child {
+    margin-bottom: 0;
+}
+
+.row.half {
+    grid-template-columns: 1fr 1fr;
+}
+
+.row.product-row {
+    grid-template-columns: 1fr 220px;
+}
+
+.row.full {
+    grid-template-columns: 1fr;
+}
+
+/* Fields */
+.field label {
+    display: block;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--label);
+    margin-bottom: 10px;
+}
+
+.field label .req {
+    color: var(--required);
+    margin-left: 4px;
+}
+
+.field input,
+.field select,
+.field textarea {
+    width: 100%;
+    height: 62px;
+    padding: 0 20px;
+    font-family: var(--font);
+    font-size: 16px;
+    color: var(--text);
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    outline: none;
+    transition: border-color .15s, box-shadow .15s;
+}
+
+.product-card .field input,
+.product-card .field select {
+    height: 60px;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+    color: var(--placeholder);
+}
+
+.field textarea {
+    height: 104px;
+    padding: 16px 20px;
+    resize: vertical;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(211, 58, 12, .12);
+}
+
+/* Custom select arrow */
+.select-wrap {
+    position: relative;
+}
+
+.field select {
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    padding-right: 52px;
+}
+
+.field select:invalid {
+    color: var(--placeholder);
+}
+
+.field select option {
+    color: var(--text);
+}
+
+.select-wrap::after {
+    content: "";
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    border-right: 1.5px solid #333;
+    border-bottom: 1.5px solid #333;
+    transform: translateY(-70%) rotate(45deg);
+    pointer-events: none;
+}
+
+/* Hidden fields section - never shown to the customer */
+.hidden-section {
+    display: none !important;
+}
+
+/* Product panel */
+#productList {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 22px;
+    counter-reset: product;
+}
+
+.product-card {
+    counter-increment: product;
+    background: var(--panel-bg);
+    border-radius: 10px;
+    padding: 24px 30px 24px;
+}
+
+.product-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+
+.product-title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--font);
+    font-weight: 500;
+    font-size: 19px;
+}
+
+/* Number is drawn by a CSS counter so it always matches the card order */
+.product-badge {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.product-badge::before {
+    content: counter(product);
+}
+
+.remove-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 1px solid var(--border-light);
+    color: #7a7a7a;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+    transition: background .15s, color .15s, border-color .15s;
+}
+
+.remove-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+.remove-btn:hover {
+    background: #fdecea;
+    border-color: #f4c3bb;
+    color: var(--accent);
+}
+
+#productList.multiple .remove-btn {
+    display: inline-flex;
+}
+
+/* Buttons */
+.add-item {
+    width: 100%;
+    height: 56px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: #ffffff;
+    border: 1px solid var(--border-light);
+    border-radius: 999px;
+    font-family: var(--font);
+    font-weight: 500;
+    font-size: 17px;
+    color: var(--text);
+    cursor: pointer;
+    transition: background .15s, border-color .15s;
+}
+
+.add-item:hover {
+    background: #fafafa;
+    border-color: #bdbdbd;
+}
+
+.add-item .plus {
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 1;
+    margin-top: -2px;
+}
+
+.submit-btn {
+    width: 100%;
+    margin-top: 18px;
+    height: 64px;
+    padding: 0 30px;
+    background: var(--accent);
+    border: none;
+    border-radius: 6px;
+    font-family: var(--font);
+    font-weight: 600;
+    font-size: 19px;
+    color: #ffffff;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(211, 58, 12, .25);
+    transition: background .15s, box-shadow .15s;
+}
+
+.submit-btn:hover {
+    background: var(--accent-hover);
+}
+
+.submit-btn:focus-visible,
+.add-item:focus-visible,
+.remove-btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.submit-btn:disabled {
+    opacity: .7;
+    cursor: wait;
+}
+
+/* Validation */
+.field.invalid input,
+.field.invalid select,
+.field.invalid textarea {
+    border-color: var(--required);
+}
+
+.field .error-text {
+    display: none;
+    color: var(--required);
+    font-size: 13px;
+    margin-top: 6px;
+}
+
+.field.invalid .error-text {
+    display: block;
+}
+
+/* Submit status message */
+.form-status {
+    display: none;
+    margin-top: 18px;
+    padding: 12px 16px;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+.form-status.success {
+    display: block;
+    background: #eaf7ee;
+    color: #1e6b34;
+    border: 1px solid #bfe3c9;
+}
+
+.form-status.error {
+    display: block;
+    background: #fdecea;
+    color: #9b2c2c;
+    border: 1px solid #f4c3bb;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .return-form {
+        padding: 24px 16px 40px;
+    }
+
+    .section {
+        margin-bottom: 30px;
+    }
+
+    .section-title {
+        font-size: 18px;
+        margin-bottom: 14px;
+    }
+
+    /* Every field stacks full width, incl. Product name / Quantity */
+    .row,
+    .row.half,
+    .row.product-row {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        margin-bottom: 18px;
+    }
+
+    .row.half .spacer {
+        display: none;
+    }
+
+    .field label {
+        font-size: 15px;
+        margin-bottom: 8px;
+    }
+
+    .field input,
+    .field select,
+    .product-card .field input,
+    .product-card .field select {
+        height: 50px;
+        padding: 0 14px;
+        font-size: 15px;
+    }
+
+    .field select {
+        padding-right: 44px;
+    }
+
+    .select-wrap::after {
+        right: 20px;
+    }
+
+    .field textarea {
+        height: 96px;
+        padding: 12px 14px;
+    }
+
+    .product-card {
+        padding: 18px 16px;
+    }
+
+    .product-title {
+        font-size: 17px;
+        gap: 10px;
+    }
+
+    .product-badge {
+        width: 32px;
+        height: 32px;
+        font-size: 15px;
+    }
+
+    .add-item {
+        height: 50px;
+        font-size: 16px;
+    }
+
+    .submit-btn {
+        height: 54px;
+        font-size: 17px;
+    }
+}
