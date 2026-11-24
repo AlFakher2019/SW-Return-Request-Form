@@ -245,49 +245,51 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
+    gap: 8px;
     background: #ffffff;
-    border: 1px solid var(--border-light);
+    border: 1px solid #e3e3e3;
     border-radius: 999px;
     font-family: var(--font);
-    font-weight: 500;
-    font-size: 17px;
-    color: var(--text);
+    font-weight: 400;
+    font-size: 16px;
+    color: #3a3a3a;
     cursor: pointer;
     transition: background .15s, border-color .15s;
 }
 
 .add-item:hover {
     background: #fafafa;
-    border-color: #bdbdbd;
+    border-color: #cfcfcf;
 }
 
 .add-item .plus {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 300;
     line-height: 1;
     margin-top: -2px;
 }
 
 .submit-btn {
-    width: 100%;
-    margin-top: 18px;
-    height: 64px;
-    padding: 0 30px;
-    background: var(--accent);
+    display: inline-block;
+    width: auto;
+    margin-top: 40px;
+    height: 54px;
+    padding: 0 40px;
+    background: #ececec;
     border: none;
-    border-radius: 6px;
+    border-radius: 999px;
     font-family: var(--font);
-    font-weight: 600;
-    font-size: 19px;
-    color: #ffffff;
+    font-weight: 500;
+    font-size: 16px;
+    color: #8c8c8c;
     cursor: pointer;
-    box-shadow: 0 2px 6px rgba(211, 58, 12, .25);
-    transition: background .15s, box-shadow .15s;
+    box-shadow: none;
+    transition: background .15s, color .15s;
 }
 
 .submit-btn:hover {
-    background: var(--accent-hover);
+    background:var(--accent-hover);
+    color: #ffffff;
 }
 
 .submit-btn:focus-visible,
@@ -419,7 +421,9 @@ body {
     }
 
     .submit-btn {
-        height: 54px;
-        font-size: 17px;
+        height: 48px;
+        padding: 0 32px;
+        font-size: 15px;
+        margin-top: 28px;
     }
 }
